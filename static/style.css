@@ -1,0 +1,340 @@
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #080d1a;
+    --card: #111a2e;
+    --card-light: #17233b;
+    --primary: #7c5cff;
+    --secondary: #20d9c2;
+    --text: #f4f6ff;
+    --muted: #a5afc7;
+    --border: rgba(255,255,255,0.09);
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    min-height: 75px;
+    padding: 15px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background: rgba(17,26,46,0.9);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    font-size: 23px;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+.header span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: min(1150px, 90%);
+    margin: 45px auto;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.eyebrow {
+    color: var(--secondary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 5vw, 43px);
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.hero > p:last-child {
+    color: var(--muted);
+    max-width: 700px;
+    margin: auto;
+}
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card,
+.result-card,
+.error-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+}
+
+.form-card h2,
+.result-card h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.helper {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.form-card h3 {
+    color: var(--secondary);
+    font-size: 17px;
+    margin: 30px 0 17px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #dce4fa;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card-light);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: 0.25s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(124,92,255,0.15);
+}
+
+input::placeholder {
+    color: #8995b0;
+}
+
+select option {
+    background: var(--card-light);
+    color: white;
+}
+
+/* =========================
+   PREDICT BUTTON
+========================= */
+
+.predict-btn {
+    width: 100%;
+    margin-top: 35px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(100deg, var(--primary), #4b9eff);
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.predict-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(124,92,255,0.3);
+}
+
+.predict-btn:active {
+    transform: scale(0.99);
+}
+
+/* =========================
+   RESULTS
+========================= */
+
+.result-card {
+    animation: appear 0.6s ease;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 25px 0 35px;
+}
+
+.result-box {
+    background: var(--card-light);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+}
+
+.result-box span {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.result-box strong {
+    font-size: 25px;
+    color: var(--secondary);
+}
+
+.result-box strong.pass {
+    color: #39df9b;
+}
+
+.result-box strong.fail {
+    color: #ff737d;
+}
+
+.result-card h3 {
+    margin-bottom: 15px;
+}
+
+.weak-list {
+    list-style: none;
+}
+
+.weak-list li {
+    background: var(--card-light);
+    border-left: 4px solid var(--secondary);
+    border-radius: 8px;
+    padding: 14px 17px;
+    margin-bottom: 12px;
+    color: #dce4fa;
+}
+
+.disclaimer {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 25px;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error-card {
+    border-color: #ff737d;
+    color: #ff9ba3;
+}
+
+.error-card h3 {
+    margin-bottom: 8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 700px) {
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .container {
+        width: 92%;
+        margin: 25px auto;
+    }
+
+    .form-card,
+    .result-card,
+    .error-card {
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+}

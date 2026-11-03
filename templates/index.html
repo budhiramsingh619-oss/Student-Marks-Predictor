@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="brand">🎓 StudentAI</div>
+    <span>Smart Marks Predictor & Weak Area Detector</span>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <p class="eyebrow">AI-POWERED STUDENT ANALYTICS</p>
+        <h1>Predict Your Academic Performance</h1>
+        <p>Enter your academic and personal details to estimate your final grade and identify areas that may need attention.</p>
+    </section>
+
+    <section class="form-card">
+
+        <h2>Student Information</h2>
+        <p class="helper">Leave any field blank to use the training dataset's default value.</p>
+
+        <form action="/predict" method="POST">
+
+            <h3>Basic Information</h3>
+
+            <div class="form-grid">
+
+                <label>Subject
+                    <select name="subject">
+                        <option value="">Dataset default</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Portuguese">Portuguese</option>
+                    </select>
+                </label>
+
+                <label>School
+                    <select name="school">
+                        <option value="">Dataset default</option>
+                        <option value="GP">GP</option>
+                        <option value="MS">MS</option>
+                    </select>
+                </label>
+
+                <label>Gender
+                    <select name="sex">
+                        <option value="">Dataset default</option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
+                    </select>
+                </label>
+
+                <label>Age
+                    <input type="number" name="age" min="15" max="22" placeholder="e.g. 18">
+                </label>
+
+                <label>Address
+                    <select name="address">
+                        <option value="">Dataset default</option>
+                        <option value="U">Urban</option>
+                        <option value="R">Rural</option>
+                    </select>
+                </label>
+
+                <label>Family Size
+                    <select name="famsize">
+                        <option value="">Dataset default</option>
+                        <option value="GT3">Greater than 3</option>
+                        <option value="LE3">3 or less</option>
+                    </select>
+                </label>
+
+                <label>Parents' Cohabitation Status
+                    <select name="Pstatus">
+                        <option value="">Dataset default</option>
+                        <option value="T">Living together</option>
+                        <option value="A">Apart</option>
+                    </select>
+                </label>
+
+            </div>
+
+            <h3>Family Background</h3>
+
+            <div class="form-grid">
+
+                <label>Mother's Education (0–4)
+                    <input type="number" name="Medu" min="0" max="4" placeholder="0 to 4">
+                </label>
+
+                <label>Father's Education (0–4)
+                    <input type="number" name="Fedu" min="0" max="4" placeholder="0 to 4">
+                </label>
+
+                <label>Mother's Job
+                    <select name="Mjob">
+                        <option value="">Dataset default</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="health">Health</option>
+                        <option value="services">Services</option>
+                        <option value="at_home">At home</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+
+                <label>Father's Job
+                    <select name="Fjob">
+                        <option value="">Dataset default</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="health">Health</option>
+                        <option value="services">Services</option>
+                        <option value="at_home">At home</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+
+                <label>Reason for Choosing School
+                    <select name="reason">
+                        <option value="">Dataset default</option>
+                        <option value="home">Home</option>
+                        <option value="reputation">Reputation</option>
+                        <option value="course">Course</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+
+                <label>Guardian
+                    <select name="guardian">
+                        <option value="">Dataset default</option>
+                        <option value="mother">Mother</option>
+                        <option value="father">Father</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+
+            </div>
+
+            <h3>Academic Details</h3>
+
+            <div class="form-grid">
+
+                <label>Travel Time (1–4)
+                    <input type="number" name="traveltime" min="1" max="4" placeholder="1 to 4">
+                </label>
+
+                <label>Weekly Study Time (1–4)
+                    <input type="number" name="studytime" min="1" max="4" placeholder="1 to 4">
+                </label>
+
+                <label>Past Class Failures
+                    <input type="number" name="failures" min="0" max="4" placeholder="0">
+                </label>
+
+                <label>School Absences
+                    <input type="number" name="absences" min="0" max="100" placeholder="Number of absences">
+                </label>
+
+            </div>
+
+            <h3>Support & Lifestyle</h3>
+
+            <div class="form-grid">
+
+                <label>Extra Educational Support
+                    <select name="schoolsup">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Family Educational Support
+                    <select name="famsup">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Extra Paid Classes
+                    <select name="paid">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Extracurricular Activities
+                    <select name="activities">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Attended Nursery School
+                    <select name="nursery">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Wants Higher Education
+                    <select name="higher">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Internet Access
+                    <select name="internet">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>In a Romantic Relationship
+                    <select name="romantic">
+                        <option value="">Dataset default</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+
+                <label>Family Relationship Quality (1–5)
+                    <input type="number" name="famrel" min="1" max="5" placeholder="1 to 5">
+                </label>
+
+                <label>Free Time (1–5)
+                    <input type="number" name="freetime" min="1" max="5" placeholder="1 to 5">
+                </label>
+
+                <label>Going Out (1–5)
+                    <input type="number" name="goout" min="1" max="5" placeholder="1 to 5">
+                </label>
+
+                <label>Weekday Alcohol Consumption (1–5)
+                    <input type="number" name="Dalc" min="1" max="5" placeholder="1 to 5">
+                </label>
+
+                <label>Weekend Alcohol Consumption (1–5)
+                    <input type="number" name="Walc" min="1" max="5" placeholder="1 to 5">
+                </label>
+
+                <label>Health Status (1–5)
+                    <input type="number" name="health" min="1" max="5" placeholder="1 to 5">
+                </label>
+
+            </div>
+
+            <button type="submit" class="predict-btn">
+                Predict Student Performance →
+            </button>
+
+        </form>
+    </section>
+
+    {% if prediction_done %}
+
+    <section class="result-card">
+
+        <h2>Prediction Results</h2>
+
+        <div class="result-grid">
+
+            <div class="result-box">
+                <span>Predicted Final Grade</span>
+                <strong>{{ predicted_grade }} / 20</strong>
+            </div>
+
+            <div class="result-box">
+                <span>Predicted Marks</span>
+                <strong>{{ predicted_percentage }} / 100</strong>
+            </div>
+
+            <div class="result-box">
+                <span>Predicted Result</span>
+                <strong class="{{ 'pass' if result == 'PASS' else 'fail' }}">
+                    {{ result }}
+                </strong>
+            </div>
+
+        </div>
+
+        <h3>Possible Areas for Improvement</h3>
+
+        <ul class="weak-list">
+            {% for area in weak_areas %}
+                <li>{{ area }}</li>
+            {% endfor %}
+        </ul>
+
+        <p class="disclaimer">
+            These are estimates based on a historical student dataset,
+            not guaranteed academic results or a diagnosis of student ability.
+        </p>
+
+    </section>
+
+    {% endif %}
+
+    {% if error %}
+
+    <section class="error-card">
+        <h3>Something went wrong</h3>
+        <p>{{ error }}</p>
+    </section>
+
+    {% endif %}
+
+</main>
+
+<footer>
+    <p>StudentAI | Student Marks Predictor & Weak Area Detector</p>
+    <p>Machine Learning Academic Project</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
